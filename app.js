@@ -101,6 +101,10 @@ app.use("/", userRouter);
 //     res.send("successfully testing");
 // })
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 app.all("/*splat", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));
 });
