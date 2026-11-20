@@ -1,3 +1,4 @@
+
 <% layout("/layouts/boilerplate") %>
 
 <div class="row mt-3">
@@ -19,6 +20,16 @@
                 <label for="password" class="form-label">Password</label>
                 <input name="password" type="password" id="password" class="form-control" required>
             </div>
+
+            <!-- Account Type -->
+            <div class="mb-3">
+                <label for="role" class="form-label">Choose Account Type</label>
+                <select name="role" id="role" class="form-select" required>
+                    <option value="user" selected>Normal User</option>
+                    <option value="host">Host</option>
+                </select>
+            </div>
+
             <button class="btn btn-success">Sign Up</button>
         </form>
     </div>

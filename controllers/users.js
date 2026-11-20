@@ -6,17 +6,26 @@ module.exports.signupGet = (req, res) => {
 
 module.exports.signupPost = async(req, res, next) => {
     try{
-        let {username, email, password} = req.body;
-        const newUser = new User({email, username});
+        let {username, email, password, role} = req.body;
+        // Allow only user or host roles
+        if (!["user", "host"].includes(role)) {
+            role = "user";
+        }
+        const newUser = new User({email, username, role});
         const registerdUser = await User.register(newUser, password);
         console.log(registerdUser);
         req.login(registerdUser, (err) =>{
             if(err){
                 return next(err);
             }
-            req.flash("success", "Welcome to stayScape!");
+           req.flash("success", "Welcome to stayScape!");
+
+            if (registerdUser.role === "host") {
+                return res.redirect("/listings");
+            }
+
             res.redirect("/listings");
-        })
+            })
     } catch(e) {
         req.flash("error", e.message);
         res.redirect("./signup");
