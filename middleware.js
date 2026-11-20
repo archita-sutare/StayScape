@@ -13,6 +13,20 @@ module.exports.isLoggedIn = (req, res, next) =>{
     next();
 };
 
+module.exports.isHost = (req, res, next) =>{
+    if(!req.isAuthenticated()){
+        req.flash("error", "You must be logged in!");
+        return res.redirect("/login");
+    }
+
+    if(req.user.role !== "host"){
+        req.flash("error", "Only Hosts can create or manage listings!");
+        return res.redirect("/listings");
+    }
+
+    next();
+}
+
 module.exports.saveRedirectUrl = (req, res, next) =>{
     if(req.session.redirectUrl){
         res.locals.redirectUrl = req.session.redirectUrl;
