@@ -21,7 +21,7 @@ module.exports.signupPost = async(req, res, next) => {
            req.flash("success", "Welcome to stayScape!");
 
             if (registerdUser.role === "host") {
-                return res.redirect("/listings");
+                return res.redirect("/host/dashboard");
             }
 
             res.redirect("/listings");
@@ -52,4 +52,8 @@ module.exports.logout = (req, res, next) => {
         req.flash("success", "You Are Logged Out!");
         res.redirect("/listings");
     })
+};
+
+module.exports.hostDashboard = async (req, res) => {
+    res.render("users/hostDashboard.ejs");
 };

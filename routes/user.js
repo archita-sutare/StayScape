@@ -21,6 +21,12 @@ router.route("/login")
         userController.loginPost
     );
 
+router.get(
+    "/host/dashboard",
+    require("../middleware.js").isLoggedIn,
+    require("../middleware.js").isHost,
+    wrapAsync(userController.hostDashboard)
+);
 
 router.get("/logout", userController.logout);
 
