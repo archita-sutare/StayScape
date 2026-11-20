@@ -1,29 +1,106 @@
 
 <% layout("/layouts/boilerplate") %>
 
-<div class="container mt-4">
-    <h2>Welcome to StayScape, Host!</h2>
-    <p class="text-muted">Manage your properties from here.</p>
+<div class="container mt-5 mb-5">
 
-    <div class="row mt-4">
-        <div class="col-md-6 mb-3">
-            <div class="card p-4">
-                <h4>My Listings</h4>
-                <p>View and manage your properties.</p>
-                <a href="/listings" class="btn btn-outline-success">
-                    View Listings
+    <!-- Welcome Header -->
+    <div class="dashboard-header p-4 p-md-5 mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <p class="text-success fw-bold mb-2">HOST DASHBOARD</p>
+
+                <h1 class="fw-bold mb-3">
+                    Welcome to StayScape!
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Manage your properties, create new listings
+                    and share your spaces with travellers.
+                </p>
+
+                <a href="/host/listings" class="btn btn-success rounded-pill px-4">
+                    <i class="fa-solid fa-house me-2"></i>
+                    Manage My Properties
                 </a>
             </div>
-        </div>
 
-        <div class="col-md-6 mb-3">
-            <div class="card p-4">
-                <h4>Add New Listing</h4>
-                <p>Publish your property on StayScape.</p>
-                <a href="/listings/new" class="btn btn-success">
-                    Add Listing
-                </a>
+            <div class="col-md-4 text-center mt-4 mt-md-0">
+                <i class="fa-solid fa-house-chimney-window dashboard-icon"></i>
             </div>
         </div>
     </div>
+
+    <!-- Section Heading -->
+    <div class="mb-4">
+        <h3 class="fw-bold">Manage Your StayScape</h3>
+        <p class="text-muted">
+            Everything you need to manage your hosting activity.
+        </p>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-4">
+
+        <!-- My Listings -->
+        <div class="col-md-6">
+            <div class="card dashboard-card h-100 border-0 shadow-sm p-4">
+
+                <div class="icon-box green-icon mb-4">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <h4 class="fw-bold">My Properties</h4>
+
+                <p class="text-muted">
+                    View and manage all properties created by you.
+                    Update property details and check your listings.
+                </p>
+
+                <a href="/host/listings"
+                   class="btn btn-outline-success rounded-pill mt-auto">
+                    View My Listings
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Add Listing -->
+        <div class="col-md-6">
+            <div class="card dashboard-card h-100 border-0 shadow-sm p-4">
+
+                <div class="icon-box red-icon mb-4">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </div>
+
+                <h4 class="fw-bold">Add New Property</h4>
+
+                <p class="text-muted">
+                    Have a new space to share?
+                    Publish your property on StayScape and reach travellers.
+                </p>
+
+                <a href="/listings/new"
+                   class="btn btn-success rounded-pill mt-auto">
+                    Create New Listing
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="hosting-note mt-5 p-4 text-center">
+        <i class="fa-solid fa-heart text-danger fs-3 mb-3"></i>
+
+        <h5 class="fw-bold">Make Every Stay Special</h5>
+
+        <p class="text-muted mb-0">
+            Thank you for being a StayScape Host.
+            Create memorable experiences for your guests!
+        </p>
+    </div>
+
 </div>

@@ -1,4 +1,4 @@
-<% layout("/layouts/boilerplate") %>
+<!-- <% layout("/layouts/boilerplate") %>
 <div class="row mt-3">
     <div class="col-8 offset-2">
     <br><br>
@@ -42,7 +42,6 @@
             <div class="invalid-feedback">Location should be valid</div>
         </div>
 
-         <!-- Category Selection -->
         <div class="mb-3">
             <label for="category" class="form-label">Select Category</label>
             <select name="listing[category]" id="category" class="form-select" required>
@@ -63,4 +62,208 @@
         <button class="btn btn-dark add-btn mt-3">Add</button>
     </form>
     </div>
+</div> -->
+
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="create-listing-page">
+
+    <div class="create-listing-header">
+        <span class="create-badge">
+            <i class="fa-solid fa-house"></i> HOST YOUR PROPERTY
+        </span>
+
+        <h2>Create a New Listing</h2>
+
+        <p>Share your beautiful space with travellers around the world.</p>
+    </div>
+
+    <div class="create-listing-card">
+
+        <form method="POST"
+            action="/listings"
+            novalidate
+            class="needs-validation"
+            enctype="multipart/form-data">
+
+            <!-- Title -->
+            <div class="mb-4">
+                <label for="title" class="form-label">
+                    Property Title
+                </label>
+
+                <input
+                    name="listing[title]"
+                    id="title"
+                    placeholder="e.g. Beautiful Villa Near the Beach"
+                    type="text"
+                    class="form-control"
+                    required
+                >
+
+                <div class="valid-feedback">Title looks good!</div>
+                <div class="invalid-feedback">Please enter a property title.</div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+                <label for="description" class="form-label">
+                    Description
+                </label>
+
+                <textarea
+                    name="listing[description]"
+                    id="description"
+                    placeholder="Describe your property, facilities, surroundings and special features..."
+                    class="form-control description-input"
+                    required
+                ></textarea>
+
+                <div class="invalid-feedback">
+                    Please add a description.
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="mb-4">
+                <label for="image" class="form-label">
+                    Property Image
+                </label>
+
+                <div class="upload-box">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <p>Upload your property image</p>
+
+                    <span>Choose a clear and attractive property photo</span>
+
+                    <input
+                        name="listing[image]"
+                        id="image"
+                        type="file"
+                        class="form-control mt-3"
+                        accept="image/*"
+                    >
+                </div>
+            </div>
+
+            <!-- Price and Country -->
+            <div class="row">
+                <div class="mb-4 col-md-4">
+                    <label for="price" class="form-label">
+                        Price per Night (₹)
+                    </label>
+
+                    <input
+                        name="listing[price]"
+                        id="price"
+                        placeholder="1200"
+                        type="number"
+                        min="1"
+                        class="form-control"
+                        required
+                    >
+
+                    <div class="invalid-feedback">
+                        Please enter a valid price.
+                    </div>
+                </div>
+
+                <div class="mb-4 col-md-8">
+                    <label for="country" class="form-label">
+                        Country
+                    </label>
+
+                    <input
+                        name="listing[country]"
+                        id="country"
+                        placeholder="India"
+                        type="text"
+                        class="form-control"
+                        required
+                    >
+
+                    <div class="invalid-feedback">
+                        Please enter a valid country.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="mb-4">
+                <label for="location" class="form-label">
+                    Property Location
+                </label>
+
+                <div class="location-input">
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <input
+                        name="listing[location]"
+                        id="location"
+                        placeholder="Jaipur, Rajasthan"
+                        type="text"
+                        class="form-control"
+                        required
+                    >
+                </div>
+
+                <div class="invalid-feedback">
+                    Please enter a valid location.
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-4">
+                <label for="category" class="form-label">
+                    Property Category
+                </label>
+
+                <select
+                    name="listing[category]"
+                    id="category"
+                    class="form-select"
+                    required
+                >
+                    <option value="" selected disabled>
+                        Choose a category
+                    </option>
+
+                    <option value="Trending">Trending</option>
+                    <option value="Rooms">Rooms</option>
+                    <option value="Iconic Cities">Iconic Cities</option>
+                    <option value="Mountains">Mountains</option>
+                    <option value="Castles">Castles</option>
+                    <option value="Amazing Pools">Amazing Pools</option>
+                    <option value="Camping">Camping</option>
+                    <option value="Farms">Farms</option>
+                    <option value="Arctic">Arctic</option>
+                </select>
+
+                <div class="invalid-feedback">
+                    Please select a category.
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-actions">
+                <a href="/listings" class="cancel-btn">
+                    Cancel
+                </a>
+
+                <button type="submit" class="create-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Create Listing
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <p class="create-footer">
+        <i class="fa-solid fa-shield-halved"></i>
+        Your property details can be managed from your Host Dashboard.
+    </p>
+
 </div>

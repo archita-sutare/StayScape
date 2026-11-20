@@ -1,4 +1,5 @@
 const User = require("../models/user.js");
+const Listing = require("../models/listing.js");
 
 module.exports.signupGet = (req, res) => {
     res.render("users/signup.ejs");
@@ -56,4 +57,14 @@ module.exports.logout = (req, res, next) => {
 
 module.exports.hostDashboard = async (req, res) => {
     res.render("users/hostDashboard.ejs");
+};
+
+module.exports.myListings = async (req, res) => {
+    const allListings = await Listing.find({
+        owner: req.user._id
+    });
+
+    res.render("listings/myListings.ejs", {
+        allListings
+    });
 };

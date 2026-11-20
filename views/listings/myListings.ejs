@@ -1,0 +1,121 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5 mb-5">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <div>
+            <p class="text-success fw-semibold mb-1">HOST PANEL</p>
+            <h2 class="fw-bold mb-1">My Properties</h2>
+            <p class="text-muted mb-0">
+                Manage and keep track of your listed properties.
+            </p>
+        </div>
+
+        <a href="/listings/new" class="btn btn-success rounded-pill px-4">
+            <i class="fa-solid fa-plus me-2"></i>
+            Add New Listing
+        </a>
+    </div>
+
+    <!-- Listing Count -->
+    <div class="mb-4">
+        <span class="badge bg-light text-dark border rounded-pill px-3 py-2">
+            <%= allListings.length %> Properties Listed
+        </span>
+    </div>
+
+    <hr class="mb-4">
+
+    <!-- Empty State -->
+    <% if (allListings.length === 0) { %>
+        <div class="text-center py-5">
+            <i class="fa-regular fa-building fa-3x text-muted mb-3"></i>
+            <h4>No Properties Listed Yet</h4>
+            <p class="text-muted">
+                Start sharing your property with travellers.
+            </p>
+            <a href="/listings/new" class="btn btn-success rounded-pill px-4">
+                Create Your First Listing
+            </a>
+        </div>
+    <% } %>
+
+    <!-- Property Cards -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+        <% for (let listing of allListings) { %>
+
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm property-card">
+
+                    <!-- Property Image -->
+                    <div class="position-relative">
+                        <img
+                            src="<%= listing.image.url %>"
+                            class="card-img-top"
+                            alt="<%= listing.title %>"
+                            style="height: 230px; object-fit: cover;"
+                        >
+
+                        <span class="badge bg-white text-dark position-absolute top-0 end-0 m-3 rounded-pill px-3 py-2">
+                            <%= listing.category %>
+                        </span>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div class="card-body p-4">
+
+                        <h5 class="fw-bold mb-2">
+                            <%= listing.title %>
+                        </h5>
+
+                        <p class="text-muted mb-3">
+                            <i class="fa-solid fa-location-dot text-danger me-2"></i>
+                            <%= listing.location %>, <%= listing.country %>
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="fw-bold text-success mb-0">
+                                    ₹<%= listing.price.toLocaleString("en-IN") %>
+                                </h5>
+                                <small class="text-muted">per night</small>
+                            </div>
+
+                            <span class="badge bg-light text-dark border">
+                                <i class="fa-solid fa-house me-1"></i>
+                                My Property
+                            </span>
+                        </div>
+
+                        <hr>
+
+                        <!-- Actions -->
+                        <div class="d-flex gap-2">
+                            <a
+                                href="/listings/<%= listing._id %>"
+                                class="btn btn-outline-dark flex-fill rounded-pill"
+                            >
+                                <i class="fa-regular fa-eye me-1"></i>
+                                View
+                            </a>
+
+                            <a
+                                href="/listings/<%= listing._id %>/edit"
+                                class="btn btn-success flex-fill rounded-pill"
+                            >
+                                <i class="fa-regular fa-pen-to-square me-1"></i>
+                                Edit
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>

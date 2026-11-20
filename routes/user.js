@@ -28,6 +28,13 @@ router.get(
     wrapAsync(userController.hostDashboard)
 );
 
+router.get(
+    "/host/listings",
+    require("../middleware.js").isLoggedIn,
+    require("../middleware.js").isHost,
+    wrapAsync(userController.myListings)
+);
+
 router.get("/logout", userController.logout);
 
 

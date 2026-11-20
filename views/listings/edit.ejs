@@ -1,4 +1,4 @@
-<% layout("/layouts/boilerplate") %>
+<!-- <% layout("/layouts/boilerplate") %>
 <div class="row mt-3">
     <div class="col-8 offset-2">
     <h3>Edit Listing</h3>
@@ -53,4 +53,302 @@
     </form>
 </div>
 </div>
+ -->
 
+<% layout("/layouts/boilerplate") %>
+
+<div class="edit-listing-page">
+
+    <!-- Page Header -->
+    <div class="edit-listing-header">
+
+        <span class="edit-badge">
+            <i class="fa-solid fa-pen-to-square"></i>
+            MANAGE YOUR PROPERTY
+        </span>
+
+        <h2>Edit Your Listing</h2>
+
+        <p>Update your property details and keep your listing fresh.</p>
+
+    </div>
+
+    <!-- Edit Form Card -->
+    <div class="edit-listing-card">
+
+        <form
+            method="POST"
+            action="/listings/<%= listing._id %>?_method=PUT"
+            novalidate
+            class="needs-validation"
+            enctype="multipart/form-data"
+        >
+
+            <!-- Title -->
+            <div class="mb-4">
+
+                <label for="title" class="form-label">
+                    Property Title
+                </label>
+
+                <input
+                    name="listing[title]"
+                    id="title"
+                    value="<%= listing.title %>"
+                    placeholder="Enter property title"
+                    type="text"
+                    class="form-control"
+                    required
+                >
+
+                <div class="valid-feedback">
+                    Title looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please enter a property title.
+                </div>
+
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+
+                <label for="description" class="form-label">
+                    Description
+                </label>
+
+                <textarea
+                    name="listing[description]"
+                    id="description"
+                    class="form-control edit-description"
+                    placeholder="Describe your property..."
+                    required
+                ><%= listing.description %></textarea>
+
+                <div class="invalid-feedback">
+                    Description should be meaningful.
+                </div>
+
+            </div>
+
+            <!-- Current Image -->
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Current Property Image
+                </label>
+
+                <div class="current-image-box">
+
+                    <img
+                        src="<%= listing.image.url %>"
+                        alt="Current listing image"
+                        class="current-listing-image"
+                    >
+
+                    <div class="current-image-info">
+                        <span class="image-status">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Current Image
+                        </span>
+
+                        <p>
+                            This image is currently displayed on your listing.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- New Image -->
+            <div class="mb-4">
+
+                <label for="image" class="form-label">
+                    Upload New Image
+                </label>
+
+                <div class="edit-upload-box">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <h6>Change your property image</h6>
+
+                    <p>Choose a new image from your device.</p>
+
+                    <input
+                        name="listing[image]"
+                        id="image"
+                        type="file"
+                        class="form-control"
+                        accept="image/*"
+                    >
+
+                    <small>
+                        Leave this field empty to keep your current image.
+                    </small>
+
+                </div>
+
+                <div class="invalid-feedback">
+                    Please select a valid image.
+                </div>
+
+            </div>
+
+            <!-- Price and Country -->
+            <div class="row">
+
+                <div class="mb-4 col-md-4">
+
+                    <label for="price" class="form-label">
+                        Price per Night (₹)
+                    </label>
+
+                    <input
+                        name="listing[price]"
+                        id="price"
+                        value="<%= listing.price %>"
+                        type="number"
+                        min="1"
+                        class="form-control"
+                        required
+                    >
+
+                    <div class="invalid-feedback">
+                        Please enter a valid price.
+                    </div>
+
+                </div>
+
+                <div class="mb-4 col-md-8">
+
+                    <label for="country" class="form-label">
+                        Country
+                    </label>
+
+                    <input
+                        name="listing[country]"
+                        id="country"
+                        value="<%= listing.country %>"
+                        type="text"
+                        class="form-control"
+                        required
+                    >
+
+                    <div class="invalid-feedback">
+                        Country should be valid.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Location -->
+            <div class="mb-4">
+
+                <label for="location" class="form-label">
+                    Property Location
+                </label>
+
+                <div class="edit-location-input">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <input
+                        name="listing[location]"
+                        id="location"
+                        value="<%= listing.location %>"
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter property location"
+                        required
+                    >
+
+                </div>
+
+                <div class="invalid-feedback">
+                    Location should be valid.
+                </div>
+
+            </div>
+
+            <!-- Category -->
+            <div class="mb-4">
+
+                <label for="category" class="form-label">
+                    Property Category
+                </label>
+
+                <select
+                    name="listing[category]"
+                    id="category"
+                    class="form-select"
+                    required
+                >
+
+                    <option value="" disabled
+                        <%= !listing.category ? "selected" : "" %>>
+                        Choose a category
+                    </option>
+
+                    <% const categories = [
+                        "Trending",
+                        "Rooms",
+                        "Iconic Cities",
+                        "Mountains",
+                        "Castles",
+                        "Amazing Pools",
+                        "Camping",
+                        "Farms",
+                        "Arctic"
+                    ]; %>
+
+                    <% for(let category of categories) { %>
+
+                        <option
+                            value="<%= category %>"
+                            <%= listing.category === category ? "selected" : "" %>
+                        >
+                            <%= category %>
+                        </option>
+
+                    <% } %>
+
+                </select>
+
+                <div class="invalid-feedback">
+                    Please select a category.
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="edit-form-actions">
+
+                <a
+                    href="/listings/<%= listing._id %>"
+                    class="edit-cancel-btn"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Cancel
+                </a>
+
+                <button type="submit" class="update-listing-btn">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <p class="edit-footer">
+        <i class="fa-solid fa-shield-halved"></i>
+        Your property updates will be reflected on your StayScape listing.
+    </p>
+
+</div>
