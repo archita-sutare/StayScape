@@ -89,20 +89,6 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-// app.get("/testListing", async (req, res) =>{
-//     let sampleListing = new Listing({
-//         title: "My new Villa",
-//         description: "By the beach",
-//         price: 1200,
-//         location: "Calangute, Goa",
-//         country: "India",
-//     });
-
-//     await sampleListing.save();
-//     console.log(" sample was saved");
-//     res.send("successfully testing");
-// })
-
 app.get("/", (req, res) => {
     res.redirect("/listings");
 });
@@ -121,4 +107,4 @@ const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () =>{
     console.log(`Server is listening to port ${PORT}`);
-});``
+});
