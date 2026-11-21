@@ -101,9 +101,9 @@
 <% layout("/layouts/boilerplate") %>
 
 <script>
-    const mapToken = "<%= mapToken %>";
-    const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
-    const listingTitle = <%- JSON.stringify(listing.title) %>;
+    window.mapToken = "<%= mapToken %>";
+    window.coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    window.listingTitle = <%- JSON.stringify(listing.title) %>;
 </script>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>

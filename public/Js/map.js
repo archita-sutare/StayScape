@@ -1,16 +1,16 @@
-mapboxgl.accessToken = mapToken;
+mapboxgl.accessToken = window.mapToken;
 
 const map = new mapboxgl.Map({
     container: 'map',
     style: "mapbox://styles/mapbox/streets-v12",
-    center: coordinates,
+    center: window.coordinates,
     zoom: 9
 });
 
 const marker = new mapboxgl.Marker({ color: "red" })
-    .setLngLat(coordinates)
+    .setLngLat(window.coordinates)
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
-            .setText(`${listingTitle} - Exact location provided after booking`)
+            .setText(`${window.listingTitle} - Exact location provided after booking`)
     )
     .addTo(map);
