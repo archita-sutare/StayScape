@@ -43,6 +43,20 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+app.get("/check-map-file", (req, res) => {
+    const fs = require("fs");
+
+    const mapPath = path.join(__dirname, "public", "js", "map.js");
+
+    res.json({
+        projectDirectory: __dirname,
+        publicDirectoryExists: fs.existsSync(path.join(__dirname, "public")),
+        jsDirectoryExists: fs.existsSync(path.join(__dirname, "public", "js")),
+        mapFileExists: fs.existsSync(mapPath),
+        mapFilePath: mapPath
+    });
+});
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
