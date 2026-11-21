@@ -25,7 +25,7 @@ const userRouter = require("./routes/user.js");
 const dbUrl = process.env.ATLASTDB_URL;
 
 main().then(() =>{
-    console.log("Connection successfully");
+    console.log("Connection successfully",  mongoose.connection.name);
 })
 .catch((err) =>{
     console.log(err);
