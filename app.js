@@ -30,8 +30,10 @@ main().then(() =>{
 .catch((err) =>{
     console.log(err);
 });
-async function main(){
-    await mongoose.connect(dbUrl);
+async function main() {
+    await mongoose.connect(dbUrl, {
+        dbName: "wanderlust"
+    });
 }
 
 app.set("view engine", "ejs");
